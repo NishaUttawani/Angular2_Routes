@@ -1,0 +1,27 @@
+<h2>User Details</h2>
+<div *ngIf="user">
+  <h3>{{ user.name }}</h3>
+  <div>
+    <label>Id: </label>{{ user.id }}
+  </div>
+  <form #UserDetailForm="ngForm" class="well" (ngSubmit)="editUser($event); UserDetailForm.reset()">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="user.name" name="user.name" class="form-control" placeholder="Enter name" required><br><br>
+      <label>DOB</label>
+      <input type="date" [(ngModel)]="user.dob" name="user.dob" class="form-control"  max="2010-12-31" placeholder="Enter Date of Birth" required><br><br>
+      <label>Phone:</label>
+      <input type="number" [(ngModel)]="user.phone" name="user.phone" class="form-control" pattern="[0-9]{10}" placeholder="Enter your phone number" required><br><br>
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="user.email" name="user.email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required placeholder="Enter email address"><br><br>
+      <label>Address:</label>
+      <input type="text" [(ngModel)]="user.address" name="user.address" class="form-control" placeholder="Enter Permanent Address" required><br><br>
+      <p>
+        <button class="back" (click)="gotoUsers(user)">Back</button>
+        <button [disabled]="!UserDetailForm.valid || !UserDetailForm.dirty" class="save" type="submit">Save</button>
+      </p>
+
+    </div>
+  </form>
+
+</div>

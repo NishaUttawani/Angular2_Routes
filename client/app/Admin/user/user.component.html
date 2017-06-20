@@ -1,0 +1,20 @@
+<h3>Add New User</h3>
+<form #userForm="ngForm" class="well" (ngSubmit)="addUser($event); userForm.reset()">
+  <div class="form-group">
+  <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Enter name" required><br><br>
+  <input type="date" [(ngModel)]="dob" name="dob" class="form-control"  max="2010-12-31" placeholder="Enter Date of Birth" required><br><br>
+  <input type="number" [(ngModel)]="phone" name="phone" class="form-control" pattern="[0-9]{10}" placeholder="Enter your phone number" required><br><br>
+  <input type="email" [(ngModel)]="email" name="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required placeholder="Enter email address"><br><br>
+  <input type="text" [(ngModel)]="address" name="address" class="form-control" placeholder="Enter Permanent Address" required><br><br>
+  <button [disabled]="!userForm.valid" class="add" type="submit">Add</button>
+  </div>
+</form>
+<hr>
+<h3>List of Users</h3>
+<ul class="items">
+ <li *ngFor="let user of users"
+    [class.selected]="isSelected(user)"
+   (click)="onSelect(user)">
+   <span class="badge">{{ user.id }}</span> {{ user.name }}
+ </li>
+</ul>

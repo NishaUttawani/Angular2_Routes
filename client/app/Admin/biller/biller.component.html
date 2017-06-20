@@ -1,0 +1,29 @@
+<h3>Add New Biller</h3>
+<form #billerForm="ngForm" class="well" (ngSubmit)="addBiller($event); billerForm.reset()">
+  <div class="form-group">
+    <input type="text" name="billerName" [(ngModel)]="billerName" class="form-control" placeholder="Enter biller name" required><br><br>
+    Biller Type:
+    <select class="form-control" name="billerType" [(ngModel)]="billerType" required>
+      <option value="Payment">Payment</option>
+      <option value="Presentment">Presentment</option>
+      <option value="Payment and Presentment">Both</option>
+    </select> <br><br>
+    <input type="email" name= "officeAddress.email" [(ngModel)]="officeAddress.email" class="form-control"
+      required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Enter email id"><br><br>
+    <input type="text" name="officeAddress.streetAdress" [(ngModel)]="officeAddress.streetAdress" class="form-control" required placeholder="Enter street Adress"><br><br>
+    <input type="number" name="officeAddress.zipCode" [(ngModel)]="officeAddress.zipCode" pattern="[0-9]{5}" class="form-control" required placeholder="Enter 5 digit Zip code"><br><br>
+    <input type="text" name="officeAddress.city" [(ngModel)]="officeAddress.city" class="form-control" required placeholder="Enter city"><br><br>
+    <input type="text" name="officeAddress.country" [(ngModel)]="officeAddress.country" required placeholder="Enter country"><br><br>
+    <input type="number" name="officeAddress.phone" [(ngModel)]="officeAddress.phone" pattern="[0-9]{10}" required placeholder="Enter 10 digit phone number"><br><br>
+    <button [disabled]="!billerForm.valid" class="add" type="submit">Add</button>
+  </div>
+</form>
+<hr>
+<h3>List of Billers</h3>
+<ul class="items">
+ <li *ngFor="let biller of billers"
+  [class.selected]="isSelected(biller)"
+   (click)="onSelect(biller)">
+   <span class="badge">{{ biller.id }}</span> {{ biller.billerName }}
+ </li>
+</ul>

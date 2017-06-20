@@ -1,0 +1,35 @@
+<h2>User Details</h2>
+<div *ngIf="biller">
+  <h3>{{ biller.billerName }}</h3>
+  <div>
+    <label>Id: </label>{{ biller.id }}
+  </div>
+  <form #billerDetailForm="ngForm" class="well" (ngSubmit)="editBiller($event); billerDetailForm.reset()">
+    <div class="form-group">
+      <label>Biller Name:</label>
+      <input type="text" name="biller.billerName" [(ngModel)]="biller.billerName" class="form-control" placeholder="Enter biller name" required><br><br>
+      <label>Biller Type:</label>
+      <select class="form-control" name="biller.billerType" [(ngModel)]="biller.billerType" required>
+        <option value="Payment">Payment</option>
+        <option value="Presentment">Presentment</option>
+        <option value="Payment and Presentment">Both</option>
+      </select> <br><br>
+      <label>Email:</label>
+      <input type="email" name= "biller.officeAddress.email" [(ngModel)]="biller.officeAddress.email" class="form-control"
+        required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Enter email id"><br><br>
+      <label>Street Address:</label>
+      <input type="text" name="biller.officeAddress.streetAdress" [(ngModel)]="biller.officeAddress.streetAdress" class="form-control" required placeholder="Enter street Adress"><br><br>
+      <label>ZipCode:</label>
+      <input type="number" name="biller.officeAddress.zipCode" [(ngModel)]="biller.officeAddress.zipCode" pattern="[0-9]{5}" class="form-control" required placeholder="Enter 5 digit Zip code"><br><br>
+      <label>City:</label>
+      <input type="text" name="biller.officeAddress.city" [(ngModel)]="biller.officeAddress.city" class="form-control" required placeholder="Enter city"><br><br>
+      <label>Country:</label>
+      <input type="text" name="biller.officeAddress.country" [(ngModel)]="biller.officeAddress.country" required placeholder="Enter country"><br><br>
+      <label>Phone:</label>
+      <input type="number" name="biller.officeAddress.phone" [(ngModel)]="biller.officeAddress.phone" pattern="[0-9]{10}" required placeholder="Enter 10 digit phone number"><br><br>
+      <button class="back" (click)="gotoBillers()">Back</button>
+      <button [disabled]="!billerDetailForm.valid || !billerDetailForm.dirty" class="save" type="submit">Save</button>
+    </div>
+  </form>
+
+</div>
